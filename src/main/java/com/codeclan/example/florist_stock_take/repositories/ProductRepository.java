@@ -1,6 +1,7 @@
 package com.codeclan.example.florist_stock_take.repositories;
 
 import com.codeclan.example.florist_stock_take.models.Product;
+import com.codeclan.example.florist_stock_take.models.Supplier;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -10,6 +11,8 @@ import java.util.List;
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
     List<Product> findBySupplierNameContainingIgnoreCase(String supplier);
+
+//    List<Product> findAllById(Long id);
 
 
 

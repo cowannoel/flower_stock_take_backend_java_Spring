@@ -42,4 +42,12 @@ class FloristStockTakeApplicationTests {
 		assertEquals("flute vase 20cm", foundProducts.get(0).getName());
 	}
 
+	@Test
+	public void canFindSupplierByName(){
+		List<Supplier> foundSuppliers = supplierRepository.findAllByNameContainsIgnoreCase("vliet");
+		assertEquals(1, foundSuppliers.size());
+		assertEquals("Jvan Vliet", foundSuppliers.get(0).getName());
+
+	}
+
 }
