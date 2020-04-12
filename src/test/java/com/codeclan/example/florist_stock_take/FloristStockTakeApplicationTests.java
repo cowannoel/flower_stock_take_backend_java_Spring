@@ -50,4 +50,12 @@ class FloristStockTakeApplicationTests {
 
 	}
 
+//	@Test
+//	public void canDeleteByName(){
+//		List<Product> productFound = productRepository.deleteByNameContainingIgnoreCase("vase");
+////		List<Product> productLeft = productRepository.findAll();
+//		assertEquals(3, productFound.size());
+
+//	}
+
 }
