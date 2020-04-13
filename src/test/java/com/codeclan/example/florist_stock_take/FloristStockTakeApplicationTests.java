@@ -50,6 +50,12 @@ class FloristStockTakeApplicationTests {
 
 	}
 
+	@Test
+	public void canFindSupplirByProductName(){
+		Supplier supplier = supplierRepository.findByStockNameContainsIgnoreCase(" flute 20cm");
+		assertEquals("Jvan Vliet", supplier.getName());
+	}
+
 //	@Test
 //	public void canDeleteByName(){
 //		List<Product> productFound = productRepository.deleteByNameContainingIgnoreCase("vase");

@@ -12,6 +12,8 @@ public interface SupplierRepository extends JpaRepository<Supplier, Long> {
 
    public List<Supplier> findAllByNameContainsIgnoreCase(String name);
 
+   Supplier findByStockNameContainsIgnoreCase(String name);
+
 //   public List<Supplier> findAllById(Long id);
 
 
