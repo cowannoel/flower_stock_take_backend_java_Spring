@@ -4,6 +4,7 @@ import com.codeclan.example.florist_stock_take.models.Product;
 import com.codeclan.example.florist_stock_take.models.Supplier;
 import com.codeclan.example.florist_stock_take.repositories.ProductRepository;
 import com.codeclan.example.florist_stock_take.repositories.SupplierRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -29,6 +30,9 @@ public class DataLoader implements ApplicationRunner {
         Supplier countryBasket = new Supplier("Country Basket", "2297 Blochairn Road, Glasgow", "01415527781", "glasgow@countrybaskets.co.uk");
         supplierRepository.save(countryBasket);
 
+        Supplier Heemskerk = new Supplier("Heemskerk", "holland", "53426", "h@h.h");
+        supplierRepository.save(Heemskerk);
+
 
 
         Product product1 = new Product("flute vase 20cm", "clear flute vase 20cm", 12, 12, vanVliet, 5);
@@ -39,5 +43,8 @@ public class DataLoader implements ApplicationRunner {
 
         Product product3 = new Product("lily vase 45cm", "clear long neck vase 45cm high", 9, 20, countryBasket, 10);
         productRepository.save(product3);
+
+        Product product4 = new Product("dry oasis", "Regular block foam", 1, 2, Heemskerk, 25);
+        productRepository.save(product4);
     }
 }

@@ -50,10 +50,20 @@ class FloristStockTakeApplicationTests {
 
 	}
 
+//	@Test
+//	public void canFindSupplierByProductName(){
+//		Supplier supplier = supplierRepository.findByStockNameContainsIgnoreCase(" flute 20cm");
+//		assertEquals("Jvan Vliet", supplier.getName());
+//	}
+
 	@Test
-	public void canFindSupplirByProductName(){
-		Supplier supplier = supplierRepository.findByStockNameContainsIgnoreCase(" flute 20cm");
-		assertEquals("Jvan Vliet", supplier.getName());
+	public void candFindAllSuppliersStockingAKindOfItem(){
+		List<Supplier> foundSuppliers = supplierRepository.findDistinctByStockNameContainsIgnoreCase("vase");
+		System.out.println(foundSuppliers);
+		assertEquals(2, foundSuppliers.size());
+
+		assertEquals("Jvan vliet", foundSuppliers.get(0).getName());
+		assertEquals("Country Basket", foundSuppliers.get(1).getName());
 	}
 
 //	@Test
