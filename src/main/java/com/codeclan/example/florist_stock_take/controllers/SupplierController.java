@@ -1,12 +1,15 @@
 package com.codeclan.example.florist_stock_take.controllers;
 
 
+import com.codeclan.example.florist_stock_take.models.Product;
 import com.codeclan.example.florist_stock_take.models.Supplier;
 import com.codeclan.example.florist_stock_take.repositories.SupplierRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/suppliers")
@@ -41,5 +44,15 @@ public class SupplierController {
     public ResponseEntity<Long> deleteSupplier(@PathVariable Long id){
         supplierRepository.deleteById(id);
         return new ResponseEntity<>(id, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/suppliers/{name}")
+    public ResponseEntity<List<Supplier>> getAllSuppliersByName(@PathVariable String name){
+        return new ResponseEntity(supplierRepository.findAllByNameContainsIgnoreCase(name), HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/products/{productName}")
+    public ResponseEntity<List<Product>> getAllSuppliersByProductName(@PathVariable String productName){
+        return new ResponseEntity(supplierRepository.findDistinctByStockNameContainsIgnoreCase(productName), HttpStatus.OK);
     }
 }

@@ -11,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
 
@@ -59,19 +60,31 @@ class FloristStockTakeApplicationTests {
 	@Test
 	public void candFindAllSuppliersStockingAKindOfItem(){
 		List<Supplier> foundSuppliers = supplierRepository.findDistinctByStockNameContainsIgnoreCase("vase");
-		System.out.println(foundSuppliers);
 		assertEquals(2, foundSuppliers.size());
-
-		assertEquals("Jvan vliet", foundSuppliers.get(0).getName());
+		assertEquals("Jvan Vliet", foundSuppliers.get(0).getName());
 		assertEquals("Country Basket", foundSuppliers.get(1).getName());
 	}
 
-//	@Test
-//	public void canDeleteByName(){
-//		List<Product> productFound = productRepository.deleteByNameContainingIgnoreCase("vase");
-////		List<Product> productLeft = productRepository.findAll();
-//		assertEquals(3, productFound.size());
+	@Test
+	public void canFindAllItemsContainingAWord(){
+		List<Product> foundProducts = productRepository.findAllByNameContainingIgnoreCase("vase");
+		assertEquals(3, foundProducts.size());
+		assertEquals("flute vase 20cm", foundProducts.get(0).getName());
+		assertEquals("flute vase 40cm", foundProducts.get(1).getName());
+		assertEquals("lily vase 45cm", foundProducts.get(2).getName());
+	}
 
-//	}
+	@Test
+	public void canFindById(){
+		Optional<Supplier> supplier = supplierRepository.findById(1L);
+		assertEquals("Jvan Vliet", supplier.get().getName());
+	}
+
+	@Test
+	public void canDeleteById(){
+		productRepository.deleteById(1L);
+		assertEquals(2, supplierRepository.findAll().size());
+
+	}
 
 }

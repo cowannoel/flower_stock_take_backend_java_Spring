@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(value = "/products")
 public class ProductController {
@@ -42,8 +44,13 @@ public class ProductController {
         return new ResponseEntity<>(id, HttpStatus.OK);
     }
 
-    @GetMapping(value = "/{name}")
+    @GetMapping(value = "/suppliers/{name}")
     public ResponseEntity getBySupplierName(@PathVariable String name){
         return new ResponseEntity(productRepository.findBySupplierNameContainingIgnoreCase(name), HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/products/{name}")
+    public ResponseEntity<List<Product>> getProductsByName(@PathVariable String name){
+        return new ResponseEntity(productRepository.findAllByNameContainingIgnoreCase(name),HttpStatus.OK);
     }
 }
